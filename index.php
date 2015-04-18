@@ -1,1 +1,0 @@
-<?php include 'public/docs/index.html'; ?>

@@ -85,6 +85,17 @@
             }
         }
     </style>
+    <style>
+        .gsc-control-cse {
+            display: inline !important;
+            padding: 0 !important;
+            border: none !important;
+        }
+        .gsc-search-box {
+            max-width: 300px !important;
+            margin-top: 6px !important;
+        }
+    </style>
     <link rel="stylesheet" href="./assets/css/bootstrap-responsive.min.css">
     <script type="text/javascript">
         var init = (function () {
@@ -133,6 +144,18 @@
 <div class="navbar navbar-fixed-top navbar-inverse">
     <div class="navbar-inner">
         <div class="container">
+            <script>
+                (function() {
+                    var cx = '011600908127139254683:dukl3v08mem';
+                    var gcse = document.createElement('script');
+                    gcse.type = 'text/javascript';
+                    gcse.async = true;
+                    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+                    '//www.google.com/cse/cse.js?cx=' + cx;
+                    var s = document.getElementsByTagName('script')[0];
+                    s.parentNode.insertBefore(gcse, s);
+                })();
+            </script>
             <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -348,6 +371,7 @@
                 <ul class="nav pull-right">
 
                     <li class="divider-vertical"></li>
+                    <li><gcse:search></gcse:search></li>
                     <li><a href="https://github.com/C2FO/patio" target="#github" class="pull-right">github</a></li>
                 </ul>
                 
@@ -578,7 +602,7 @@
 
 <hr>
 
-Documentation generated using <a href="https://github.com/doug-martin/coddoc">coddoc</a>.
+Documentation generated using <a href="https://github.com/doug-martin/coddoc">coddoc</a>
 
 
 </div>
@@ -586,20 +610,6 @@ Documentation generated using <a href="https://github.com/doug-martin/coddoc">co
 <script type="text/javascript" src="./assets/js/jquery.js"></script>
 <script type="text/javascript" src="./assets/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="./assets/js/prettify.js"></script>
-<script>
-    (function() {
-        var cx = '011600908127139254683:dukl3v08mem';
-        var gcse = document.createElement('script');
-        gcse.type = 'text/javascript';
-        gcse.async = true;
-        gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
-        '//www.google.com/cse/cse.js?cx=' + cx;
-        var s = document.getElementsByTagName('script')[0];
-        s.parentNode.insertBefore(gcse, s);
-    })();
-</script>
-<gcse:search></gcse:search>
-
 </body>
 </html>
 

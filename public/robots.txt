@@ -1,0 +1,3 @@
+User-agent: *
+Allow: *
+Sitemap: http://safe-shore-6562.herokuapp.com/sitemap.xml

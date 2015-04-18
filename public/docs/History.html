@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>patio</title>
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/css/prettify.css">
+    <style type="text/css">
+        
+
+/*.subnav-inner {*/
+    /*width: 100%;*/
+    /*height: 36px;*/
+    /*background-color: #EEE;*/
+    /*background-repeat: repeat-x;*/
+    /*background-image: -moz-linear-gradient(top, whiteSmoke 0%, #EEE 100%);*/
+    /*background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, whiteSmoke), color-stop(100%, #EEE));*/
+    /*background-image: -webkit-linear-gradient(top, whiteSmoke 0%, #EEE 100%);*/
+    /*background-image: -ms-linear-gradient(top, whiteSmoke 0%, #EEE 100%);*/
+    /*background-image: -o-linear-gradient(top, whiteSmoke 0%, #EEE 100%);*/
+    /*filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#f5f5f5', endColorstr = '#eeeeee', GradientType = 0);*/
+    /*background-image: linear-gradient(top, whiteSmoke 0%, #EEE 100%);*/
+    /*-webkit-border-radius: 4px;*/
+    /*-moz-border-radius: 4px;*/
+    /*border-radius: 4px;*/
+/*}*/
+
+/*.subnav .nav > li > a:hover {*/
+    /*color: black !important;*/
+/*}*/
+
+/*.subnav .nav li.dropdown .dropdown-toggle .caret,*/
+/*.subnav .nav li.dropdown.open .caret {*/
+    /*border-top-color: #999 !important;*/
+    /*border-bottom-color: #999 !important;*/
+/*}*/
+
+/*.subnav-fixed {*/
+    /*position: fixed;*/
+    /*width : 90%;*/
+    /*margin-right: auto;*/
+    /*margin-left: auto;*/
+    /*top: 40px;*/
+    /*left: 0;*/
+    /*right: 0;*/
+    /*z-index: 1020;*/
+    /*border-color: #D5D5D5;*/
+    /*border-width: 0 0 1px;*/
+    /*-webkit-border-radius: 0;*/
+    /*-moz-border-radius: 0;*/
+    /*border-radius: 0;*/
+    /*-webkit-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);*/
+    /*-moz-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);*/
+    /*box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);*/
+    /*filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);*/
+/*}*/
+
+/*.navbar .nav  .dropdown-menu {*/
+    /*max-height: 500px;*/
+    /*overflow: auto;*/
+/*}​*/
+
+    </style>
+    <style type="text/css">
+        body {
+            padding: 90px;
+        }
+
+        .subnav{
+            margin-top: 40px;
+            margin-right: auto;
+            margin-left: auto;
+            z-index: 1000;
+        }
+
+        .dropdown-menu{
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        @media (max-width:979px) {
+            .subnav{
+                margin-top: auto;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="./assets/css/bootstrap-responsive.min.css">
+    <script type="text/javascript">
+        var init = (function () {
+            "use strict";
+
+            var processScroll = (function () {
+                var curr = null, prev = null;
+                return function (nav) {
+                    var $win = $(window);
+                    $('.subnav').each(function () {
+                        var nav = $(this);
+                        var navTop = $win.width() < 980 ? 0 : nav.offset().top - 40;
+
+                        var scrollTop = $win.scrollTop();
+                        if (scrollTop >= navTop && curr != nav) {
+                            if(curr){
+                                curr.removeClass('subnav-fixed')
+                                prev = curr;
+                            }
+                            curr = nav;
+                            curr.addClass('subnav-fixed')
+                        } else if (curr == nav && scrollTop <= navTop) {
+                            curr.removeClass('subnav-fixed');
+                            prev.addClass('subnav-fixed');
+                            curr = prev;
+                        }else{
+                            nav.removeClass('subnav-fixed');
+                        }
+                    });
+                };
+            })();
+
+            return function () {
+                window.prettyPrint && prettyPrint();
+                $(".collapse").collapse();
+                var $window = $(window);
+                //$(".subnav").affix ();
+                // fix sub nav on scroll
+//                processScroll();
+//                $(window).on('scroll', processScroll)
+            }
+        })();
+    </script>
+</head>
+<body onload="init()">
+<div class="navbar navbar-fixed-top navbar-inverse">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"> </span>
+            </a>
+            
+            <a href="./index.html" class="brand">patio</a>
+            
+            <div class="nav-collapse">
+                <ul class="nav">
+                    
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Docs<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+                            <li><a href="./connecting.html">Connecting</a></li>
+                            
+                            <li><a href="./models.html">Models</a></li>
+                            
+                            <li><a href="./associations.html">Associations</a></li>
+                            
+                            <li><a href="./model-inheritance.html">Model Inheritance</a></li>
+                            
+                            <li><a href="./validation.html">Model Validation</a></li>
+                            
+                            <li><a href="./plugins.html">Model Plugins</a></li>
+                            
+                            <li><a href="./querying.html">Querying</a></li>
+                            
+                            <li><a href="./DDL.html">DDL</a></li>
+                            
+                            <li><a href="./migrations.html">Migrations</a></li>
+                            
+                            <li><a href="./logging.html">Logging</a></li>
+                            
+                            <li><a href="./History.html">Change Log</a></li>
+                            
+                            <li><a href="./coverage.html">Test Coverage</a></li>
+                            
+                        </ul>
+                        
+
+                        
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+                            <li><a href="patio_sql.html">patio.sql</a></li>
+                            
+                            <li><a href="patio_sql_Constants.html">patio.sql.Constants</a></li>
+                            
+                        </ul>
+                    </li>
+                    
+                    
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+                            <li><a href="./patio.html">patio</a></li>
+                            
+                            <li><a href="./patio_AlterTableGenerator.html">patio.AlterTableGenerator</a></li>
+                            
+                            <li><a href="./patio_AssociationError.html">patio.AssociationError</a></li>
+                            
+                            <li><a href="./patio_ConnectionPool.html">patio.ConnectionPool</a></li>
+                            
+                            <li><a href="./patio_Database.html">patio.Database</a></li>
+                            
+                            <li><a href="./patio_DatabaseError.html">patio.DatabaseError</a></li>
+                            
+                            <li><a href="./patio_Dataset.html">patio.Dataset</a></li>
+                            
+                            <li><a href="./patio_DatasetError.html">patio.DatasetError</a></li>
+                            
+                            <li><a href="./patio_ExpressionError.html">patio.ExpressionError</a></li>
+                            
+                            <li><a href="./patio_MigrationError.html">patio.MigrationError</a></li>
+                            
+                            <li><a href="./patio_Model.html">patio.Model</a></li>
+                            
+                            <li><a href="./patio_ModelError.html">patio.ModelError</a></li>
+                            
+                            <li><a href="./patio_NotImplemented.html">patio.NotImplemented</a></li>
+                            
+                            <li><a href="./patio_PatioError.html">patio.PatioError</a></li>
+                            
+                            <li><a href="./patio_QueryError.html">patio.QueryError</a></li>
+                            
+                            <li><a href="./patio_SchemaGenerator.html">patio.SchemaGenerator</a></li>
+                            
+                            <li><a href="./patio_Time.html">patio.Time</a></li>
+                            
+                            <li><a href="./patio_associations_Association.html">patio.associations.Association</a></li>
+                            
+                            <li><a href="./patio_associations_ManyToMany.html">patio.associations.ManyToMany</a></li>
+                            
+                            <li><a href="./patio_associations_ManyToOne.html">patio.associations.ManyToOne</a></li>
+                            
+                            <li><a href="./patio_associations_ManyToOne.html">patio.associations.ManyToOne</a></li>
+                            
+                            <li><a href="./patio_associations_OneToMany.html">patio.associations.OneToMany</a></li>
+                            
+                            <li><a href="./patio_dataset.html#._Query">patio.dataset._Query</a></li>
+                            
+                            <li><a href="./patio_migrations_IntegerMigrator.html">patio.migrations.IntegerMigrator</a></li>
+                            
+                            <li><a href="./patio_migrations_Migrator.html">patio.migrations.Migrator</a></li>
+                            
+                            <li><a href="./patio_migrations_TimestampMigrator.html">patio.migrations.TimestampMigrator</a></li>
+                            
+                            <li><a href="./patio_plugins_CachePlugin.html">patio.plugins.CachePlugin</a></li>
+                            
+                            <li><a href="./patio_plugins_ClassTableInheritancePlugin.html">patio.plugins.ClassTableInheritancePlugin</a></li>
+                            
+                            <li><a href="./patio_plugins_ColumnMapper.html">patio.plugins.ColumnMapper</a></li>
+                            
+                            <li><a href="./patio_plugins_TimeStampPlugin.html">patio.plugins.TimeStampPlugin</a></li>
+                            
+                            <li><a href="./patio_plugins_ValidatorPlugin.html">patio.plugins.ValidatorPlugin</a></li>
+                            
+                            <li><a href="./patio_sql_AliasMethods.html">patio.sql.AliasMethods</a></li>
+                            
+                            <li><a href="./patio_sql_AliasedExpression.html">patio.sql.AliasedExpression</a></li>
+                            
+                            <li><a href="./patio_sql_BitWiseMethods.html">patio.sql.BitWiseMethods</a></li>
+                            
+                            <li><a href="./patio_sql_BooleanConstant.html">patio.sql.BooleanConstant</a></li>
+                            
+                            <li><a href="./patio_sql_BooleanExpression.html">patio.sql.BooleanExpression</a></li>
+                            
+                            <li><a href="./patio_sql_BooleanMethods.html">patio.sql.BooleanMethods</a></li>
+                            
+                            <li><a href="./patio_sql_CaseExpression.html">patio.sql.CaseExpression</a></li>
+                            
+                            <li><a href="./patio_sql_Cast.html#.constructor">patio.sql.Cast.constructor</a></li>
+                            
+                            <li><a href="./patio_sql_CastMethods.html">patio.sql.CastMethods</a></li>
+                            
+                            <li><a href="./patio_sql_ColumnAll.html">patio.sql.ColumnAll</a></li>
+                            
+                            <li><a href="./patio_sql_ComplexExpression.html">patio.sql.ComplexExpression</a></li>
+                            
+                            <li><a href="./patio_sql_ComplexExpressionMethods.html">patio.sql.ComplexExpressionMethods</a></li>
+                            
+                            <li><a href="./patio_sql_Constant.html">patio.sql.Constant</a></li>
+                            
+                            <li><a href="./patio_sql_DateTime.html">patio.sql.DateTime</a></li>
+                            
+                            <li><a href="./patio_sql_Decimal.html">patio.sql.Decimal</a></li>
+                            
+                            <li><a href="./patio_sql_Expression.html">patio.sql.Expression</a></li>
+                            
+                            <li><a href="./patio_sql_Float.html">patio.sql.Float</a></li>
+                            
+                            <li><a href="./patio_sql_GenericExpression.html">patio.sql.GenericExpression</a></li>
+                            
+                            <li><a href="./patio_sql_Identifier.html">patio.sql.Identifier</a></li>
+                            
+                            <li><a href="./patio_sql_InequalityMethods.html">patio.sql.InequalityMethods</a></li>
+                            
+                            <li><a href="./patio_sql_JoinClause.html">patio.sql.JoinClause</a></li>
+                            
+                            <li><a href="./patio_sql_JoinOnClause.html">patio.sql.JoinOnClause</a></li>
+                            
+                            <li><a href="./patio_sql_JoinUsingClause.html">patio.sql.JoinUsingClause</a></li>
+                            
+                            <li><a href="./patio_sql_Json.html">patio.sql.Json</a></li>
+                            
+                            <li><a href="./patio_sql_JsonArray.html">patio.sql.JsonArray</a></li>
+                            
+                            <li><a href="./patio_sql_LiteralString.html#.constructor">patio.sql.LiteralString.constructor</a></li>
+                            
+                            <li><a href="./patio_sql_NoBooleanInputMethods.html">patio.sql.NoBooleanInputMethods</a></li>
+                            
+                            <li><a href="./patio_sql_NumericExpression.html">patio.sql.NumericExpression</a></li>
+                            
+                            <li><a href="./patio_sql_NumericMethods.html">patio.sql.NumericMethods</a></li>
+                            
+                            <li><a href="./patio_sql_OrderedExpression.html">patio.sql.OrderedExpression</a></li>
+                            
+                            <li><a href="./patio_sql_OrderedMethods.html">patio.sql.OrderedMethods</a></li>
+                            
+                            <li><a href="./patio_sql_PlaceHolderLiteralString.html">patio.sql.PlaceHolderLiteralString</a></li>
+                            
+                            <li><a href="./patio_sql_QualifiedIdentifier.html">patio.sql.QualifiedIdentifier</a></li>
+                            
+                            <li><a href="./patio_sql_QualifyingMethods.html">patio.sql.QualifyingMethods</a></li>
+                            
+                            <li><a href="./patio_sql_SQLFunction.html">patio.sql.SQLFunction</a></li>
+                            
+                            <li><a href="./patio_sql_StringConcatenationMethods.html">patio.sql.StringConcatenationMethods</a></li>
+                            
+                            <li><a href="./patio_sql_StringExpression.html">patio.sql.StringExpression</a></li>
+                            
+                            <li><a href="./patio_sql_StringMethods.html">patio.sql.StringMethods</a></li>
+                            
+                            <li><a href="./patio_sql_SubScript.html">patio.sql.SubScript</a></li>
+                            
+                            <li><a href="./patio_sql_SubscriptMethods.html">patio.sql.SubscriptMethods</a></li>
+                            
+                            <li><a href="./patio_sql_Time.html">patio.sql.Time</a></li>
+                            
+                            <li><a href="./patio_sql_TimeStamp.html">patio.sql.TimeStamp</a></li>
+                            
+                            <li><a href="./patio_sql_Year.html">patio.sql.Year</a></li>
+                            
+                        </ul>
+                    </li>
+                    
+                </ul>
+                
+                <ul class="nav pull-right">
+
+                    <li class="divider-vertical"></li>
+                    <li><a href="https://github.com/C2FO/patio" target="#github" class="pull-right">github</a></li>
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container-fluid">
+    <a name="top"></a>
+    <div class="container">
+
+
+
+<h1 id="0-9-3">0.9.3</h1>
+<ul>
+<li>Allow for <code>literal</code> in dataset <code>from</code> clause</li>
+</ul>
+<h1 id="0-9-2">0.9.2</h1>
+<ul>
+<li>Updated <code>comb</code> module</li>
+</ul>
+<h1 id="0-9-1">0.9.1</h1>
+<ul>
+<li>Updated <code>pg</code> module</li>
+<li>Fixed issue where connection would hang in postgres adapter</li>
+</ul>
+<h1 id="0-9-0">0.9.0</h1>
+<ul>
+<li>Fixed issue with <code>time</code> db type in postgres adapter</li>
+<li>Added grunt</li>
+<li>Updated dependencies for mysql and postgres</li>
+<li>Added support for setting <code>batchSize</code> and <code>highWaterMark</code> when using the <code>stream</code> dataset method</li>
+</ul>
+<h1 id="0-8-1">0.8.1</h1>
+<ul>
+<li>Added Array support for JSON datatypes.</li>
+</ul>
+<h1 id="0-8-0">0.8.0</h1>
+<ul>
+<li>Removed <code>\</code> escaping in postgres adapter as it is not the default in versions &gt;= 9.1</li>
+</ul>
+<h1 id="0-7-0">0.7.0</h1>
+<ul>
+<li>Fix for issue <a href="https://github.com/C2FO/patio/issues/121">#121</a> added the table name to the error thrown.</li>
+<li>Merged <a href="https://github.com/C2FO/patio/pull/120">#120</a> this allows tables registered with DB to be looked up properly.<ul>
+<li>This will break any <code>getModel</code> call where a table with the same name is added twice.</li>
+</ul>
+</li>
+<li>Added documentation about running tests.</li>
+</ul>
+<h1 id="0-6-1">0.6.1</h1>
+<ul>
+<li>Added details for logging if the err.detail exists.</li>
+<li>Changed streaming highWaterMark</li>
+</ul>
+<h1 id="0-6-0">0.6.0</h1>
+<ul>
+<li>Fixed issue where grouped expressions with arrays and hashes as items, the expressions generated from the hashes are anded and each array item is ORed properly <a href="https://github.com/C2FO/patio/pull/115">#115</a></li>
+</ul>
+<h1 id="0-5-4">0.5.4</h1>
+<ul>
+<li>Updated to <code>errback</code> the query promise when an error is caught.</li>
+<li>Fixed issue with setting the <code>handleRowDescription</code> on a patio query.</li>
+</ul>
+<h1 id="0-5-3">0.5.3</h1>
+<ul>
+<li>Fixed issue with <code>logError</code> in transactions.</li>
+</ul>
+<h1 id="0-5-2">0.5.2</h1>
+<ul>
+<li>Fixed issue with <code>streams</code> in transactions.</li>
+</ul>
+<h1 id="0-5-1">0.5.1</h1>
+<ul>
+<li>Update <code>comb</code> to <code>v0.3.0</code></li>
+<li>Fixed issues with <code>savepoints</code> and update transaction to conform with docs. <a href="https://github.com/C2FO/patio/pull/110">#110</a></li>
+</ul>
+<h1 id="0-5-0">0.5.0</h1>
+<ul>
+<li>Added a new <code>stream</code> method to allow the streaming of large datasets from the database.</li>
+<li>Added a new <code>isolate</code> option to <code>db.transaction</code> to ensure that the transaction is not nested inside of a concurrently running transaction.</li>
+<li>Added more indepth error handling to connections on all database adapters.</li>
+<li>Refactored <code>fetchRows</code>, and <code>execute</code> to be common between adapters.</li>
+<li>Updated Readme with better examples.</li>
+</ul>
+<h1 id="0-4-1">0.4.1</h1>
+<ul>
+<li>Added error handling on connection errors and reconnects if a connection errors</li>
+</ul>
+<h1 id="0-4-0">0.4.0</h1>
+<ul>
+<li>Added support for redshift database.</li>
+</ul>
+<h1 id="v0-3-1">v0.3.1</h1>
+<ul>
+<li>Normalized thrown errors.</li>
+</ul>
+<h1 id="v0-3-0">v0.3.0</h1>
+<ul>
+<li>Added more in depth support for the <code>JSON</code> datatype.<ul>
+<li>Databases now natively support the JSON datatype.</li>
+<li>Values are type casted to a JSON datatype when used with a model.</li>
+</ul>
+</li>
+</ul>
+<h1 id="v0-2-18">v0.2.18</h1>
+<ul>
+<li>Added new <code>patio.sql.json</code> type for storing JSON datatypes.</li>
+</ul>
+<h1 id="v0-2-17">v0.2.17</h1>
+<ul>
+<li>Changed to use use <code>pg.js</code></li>
+<li>Removed the storing of columns in datasets</li>
+</ul>
+<h1 id="v0-2-16">v0.2.16</h1>
+<ul>
+<li>Fixed constraint creation to accept a function when creating or altering constraints.</li>
+</ul>
+<h1 id="v0-2-15">v0.2.15</h1>
+<ul>
+<li>Updated patio migrate to use an exit code of <code>1</code> if the migration fails. <a href="https://github.com/C2FO/patio/issues/92">#92</a></li>
+<li>Fixed the use of hashes in <code>andGrouped*</code> methods.</li>
+</ul>
+<h1 id="v0-2-14">v0.2.14</h1>
+<ul>
+<li>Converted uses of <code>.then</code> to <code>.chain</code></li>
+<li>Refactored code to not use <code>.bind</code> or <code>hitch</code> for performance.<ul>
+<li>Test ran in <code>~15sec</code> before now <code>~10sec</code></li>
+</ul>
+</li>
+<li>Overall performace increases</li>
+</ul>
+<h1 id="v0-2-13">v0.2.13</h1>
+<ul>
+<li>Updated <code>multiInsert</code> to support the returning of results.</li>
+<li>Updated the postgres adapter to not change strings with double <code>_</code> to identifiers.</li>
+</ul>
+<h1 id="v0-2-12">v0.2.12</h1>
+<ul>
+<li>Patio migrate missingArgument undefined <a href="https://github.com/C2FO/patio/pull/89">#89</a></li>
+<li><p>Using stirngToIdentifier on hash keys in <code>select()</code> for doing aliases <a href="https://github.com/C2FO/patio/pull/87">#87</a></p>
+</li>
+<li><p>v0.2.11</p>
+</li>
+<li><p>Updated &#39;grouped&#39; methods to handle cases where they are called without an existing clause on the DS, and regenerated docs.</p>
+</li>
+</ul>
+<h1 id="v0-2-9">v0.2.9</h1>
+<ul>
+<li>Updated model to store transformed values in the changed hash</li>
+<li>Update docs for pr <a href="https://github.com/C2FO/patio/pull/82">#82</a></li>
+</ul>
+<h1 id="0-2-8">0.2.8</h1>
+<ul>
+<li>Updated listener to strip generated quotes.</li>
+</ul>
+<h1 id="0-2-7">0.2.7</h1>
+<ul>
+<li>Fixed issue with quoted channel names</li>
+</ul>
+<h1 id="0-2-6">0.2.6</h1>
+<ul>
+<li>Updated to use postgres native drivers unless they are not found.</li>
+</ul>
+<h1 id="0-2-5">0.2.5</h1>
+<ul>
+<li>Added support for postgres listen/notify.</li>
+</ul>
+<h1 id="0-2-4-2013-10-23">0.2.4/ 2013-10-23</h1>
+<ul>
+<li>Changed to prevent errors that occur in a transaction from being wrapped in a new error and losing the stack.</li>
+</ul>
+<h1 id="0-2-3-2013-10-22">0.2.3 / 2013-10-22</h1>
+<ul>
+<li>Changed drop view code to ensure that views are dropped in order.</li>
+</ul>
+<h1 id="0-2-2-2013-10-21">0.2.2 / 2013-10-21</h1>
+<ul>
+<li>Added support for postgres 9.3 materialized views.<ul>
+<li><code>createMaterializedView</code>: Create a new materialized view.</li>
+<li><code>dropMaterializedView</code>: Drops a materialized view.</li>
+<li><code>refreshMaterializedView</code>: Refresh a materialized view.</li>
+</ul>
+</li>
+</ul>
+<h1 id="0-2-1-2013-10-16">0.2.1 / 2013-10-16</h1>
+<ul>
+<li>Fixed issue in connection pool where a connection would never be returned to the pool.</li>
+</ul>
+<h1 id="0-2-0-2013-09-30">0.2.0 / 2013-09-30</h1>
+<ul>
+<li>Upgraded <code>pg</code>, <code>mysql</code>, and <code>validator</code>.</li>
+<li>Added a v0.10 build to travis</li>
+<li>Merged issue <a href="https://github.com/C2FO/patio/pull/68">#68</a>.</li>
+</ul>
+<h1 id="0-1-7-2012-12-4">0.1.7 / 2012-12-4</h1>
+<ul>
+<li>Fixed issue where port was not added to connection options.</li>
+</ul>
+<h1 id="0-1-6-2012-11-16">0.1.6 / 2012-11-16</h1>
+<ul>
+<li>Upgraded comb to v0.1.10</li>
+<li>Fixed issue where eager many to one returns a promise if null (@mbenedettini)</li>
+</ul>
+<h1 id="0-1-5-2012-09-20">0.1.5 / 2012-09-20</h1>
+<ul>
+<li>Fixed issue with sql.literal not accepting a single identifier</li>
+<li>Fixed Issue with one to many model if the table is plurarlized</li>
+<li>Fixed issue with Dataset#group not using stringToIdentifier to convert column arguments to identifiers</li>
+<li>Cleaned up model code to use async array and chain methods so errors are propagated properly.</li>
+<li>updated timestamp plugin to set updated/created when just retreving sql</li>
+<li>Fixed primary key caching issue</li>
+</ul>
+<h1 id="0-1-4-2012-09-20">0.1.4 / 2012-09-20</h1>
+<ul>
+<li>added a rowCB for custom dataset model</li>
+<li>added insert, update and remove sql properties on models</li>
+<li>re-added jscoverage submodule</li>
+</ul>
+<h1 id="0-1-3-2012-09-10">0.1.3 / 2012-09-10</h1>
+<ul>
+<li>Added travis CI</li>
+<li>Code clean up</li>
+<li>Updated comb version</li>
+</ul>
+<h1 id="0-1-2-2012-09-06">0.1.2 / 2012-09-06</h1>
+<ul>
+<li>Updated for new comb api.</li>
+<li>Fixed tests</li>
+<li>Update db.tranaction to require a promise or the callback function to be called.</li>
+</ul>
+<h1 id="0-1-1-2012-08-29">0.1.1 / 2012-08-29</h1>
+<ul>
+<li>new patio.Dataset features<ul>
+<li>sourceList - get all sources as identifiers</li>
+<li>joinSourceList - get all join sources</li>
+<li>hasSelectSource - returns true if there are not any select sources (i.e select *)</li>
+<li>seleIfNoSource - add the selects if there is not currently a select</li>
+</ul>
+</li>
+<li>Fixed issue with patio.Model#_setFromDb where values not in the models table columns would be in accesible, (i.e a join with a model would not show the join columns)</li>
+<li>updated docs</li>
+</ul>
+<h1 id="0-1-0-2012-08-25">0.1.0 / 2012-08-25</h1>
+<ul>
+<li>Added custom getters (mbenedettini)</li>
+<li>Added Validator plugin for models</li>
+<li>Change model inheritance configure method to return this for chaining</li>
+<li>Updated all promise returning methods to return the <code>.promise()</code></li>
+<li>Updated docs new docs layout</li>
+<li>Updated docs<ul>
+<li>Updated logging.md to use new comb logging API</li>
+<li>updated associations.md to use chaning api</li>
+<li>Added examples to model.md for new getter functionality and added a setter and getter example</li>
+<li>Added Model Validation page and added validation to plugins page.</li>
+<li>Updated index.html page</li>
+</ul>
+</li>
+<li>New Tests for both custom getters and setters</li>
+<li>Changed tests to run both mysql and postgres</li>
+<li>Bug fixes<ul>
+<li>Fixed bug where custom datasets for model definition would not work</li>
+<li>Changed the storage of model classes so patio.getModel will always work even with datasets.</li>
+</ul>
+</li>
+</ul>
+<h1 id="0-0-9-2012-08-16">0.0.9 / 2012-08-16</h1>
+<ul>
+<li>Fixed bug where default that are buffers were not handle properly (#35)</li>
+<li>Fixed bug with inheritance loading</li>
+<li>Updated benchmark</li>
+<li>Changed <code>oneToMany</code> to load models when removing to call hooks</li>
+<li>New ColumnMapper plugin</li>
+<li>added alwaysQualify which will qualify a dataset every time sql is generated from it.</li>
+<li>converted model to use comb.serial instead of the promise chaining api</li>
+<li>changed reload of save and update to be invoked after post save and update have been called.</li>
+<li>Merged pull request from @mbenedettini to lazy initialize hive</li>
+</ul>
+<h1 id="0-0-8-2012-07-13">0.0.8 / 2012-07-13</h1>
+<ul>
+<li>Updated Docs now using <a href="http://github.com/doug-martin/coddoc">coddoc</a> for doc generation<ul>
+<li>Documented Plugins</li>
+<li>Updated docs for new Model definitions</li>
+</ul>
+</li>
+<li>Migrated tests to use <a href="http://github.com/doug-martin/it">it</a></li>
+<li>Added sync models<ul>
+<li>patio.addModel does not return a promise anymore instead use <code>patio.syncModel</code> to sync models with the database</li>
+</ul>
+</li>
+<li>Added postgres support use <code>pg://</code> in connection URI</li>
+<li>Performance Improvements</li>
+<li>Added Text and Blob support</li>
+<li>More test coverage</li>
+<li>Bug Fixes<ul>
+<li>Fixed issue where transaction connection would not always be used on databases</li>
+</ul>
+</li>
+<li>Added Events to patio</li>
+</ul>
+<h1 id="0-0-5-2012-02-02">0.0.5 / 2012-02-02</h1>
+<ul>
+<li>Made &quot;use strict&quot; compatibile</li>
+</ul>
+<h1 id="0-0-4-2012-02-16">0.0.4 / 2012-02-16</h1>
+<ul>
+<li>Bug Fixes<ul>
+<li>Fixed issue with closing connections in the Connection Pool</li>
+<li>Changed association ds rowCb behavior so when using the associated models dataset directly you receive instances back</li>
+<li>Changed database transaction tracking behavior</li>
+<li>Added findOrCreate method to query plugin</li>
+<li>Fixed reload method to clear and reload associations</li>
+<li>upped comb version to v0.0.9</li>
+</ul>
+</li>
+</ul>
+<h1 id="0-0-3-2012-02-09">0.0.3 / 2012-02-09</h1>
+<ul>
+<li>Bug Fixes<ul>
+<li>Fixed issue in associations where options were not being applied correctly</li>
+<li>Change Model to return transaction cb error if it was generated otherwise the transaction error.</li>
+<li>Removed automatic casting to null if property does not exist on current model</li>
+<li>Table inheritance added check for undefined on the pk and accounted for non autoincrementing ids when creating realationships</li>
+<li>Changed patio.sql Date wrappers to create a new Date if one is not provided</li>
+</ul>
+</li>
+<li>Docs fixes</li>
+</ul>
+<h1 id="0-0-2-2012-02-04">0.0.2 / 2012-02-04</h1>
+<ul>
+<li>Added new plugin for model inheritance<ul>
+<li>Added new docs</li>
+<li>Examples</li>
+<li>Tests</li>
+</ul>
+</li>
+<li>Bug Fixes<ul>
+<li>Fixed issues with logging and external accessibility</li>
+<li>Fixed concurrent transaction issues where simulaneous transactions would interfere with eachother.</li>
+</ul>
+</li>
+<li>Increased performance</li>
+<li>More documentation</li>
+<li>More tests</li>
+<li>New examples</li>
+<li>Updated example application</li>
+<li>Model updates<ul>
+<li>Cleaned up model creation</li>
+<li>Abstracted some core initialization so plugins and subclasses can alter as need be.</li>
+</ul>
+</li>
+<li>Added benchmarks for<ul>
+<li>Async inserts</li>
+<li>Serial inserts</li>
+<li>Async updates</li>
+<li>Serial updates</li>
+<li>Reads</li>
+<li>Async deletes</li>
+<li>Serial deletes</li>
+</ul>
+</li>
+</ul>
+<h1 id="0-0-1-2012-01-31">0.0.1 / 2012-01-31</h1>
+<ul>
+<li>Initial release</li>
+</ul>
+
+<hr>
+
+Documentation generated using <a href="https://github.com/doug-martin/coddoc">coddoc</a>.
+
+
+</div>
+</div>
+<script type="text/javascript" src="./assets/js/jquery.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="./assets/js/prettify.js"></script>
+
+</body>
+</html>
